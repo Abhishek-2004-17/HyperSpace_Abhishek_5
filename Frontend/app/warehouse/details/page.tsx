@@ -12,7 +12,7 @@ const details: React.FC = () => {
             data-containers2
             className="w-3/4 bg-blue-100 p-6 border-2 border-blue-400 rounded-lg shadow-lg text-center"
           >
-            <p>Warehouse 1: Warehouse 1 location.</p>
+            <p className="text-red-500">Warehouse 1: Warehouse 1 location.</p>
           </div>
 
           {/* Container 2 */}
@@ -20,7 +20,7 @@ const details: React.FC = () => {
             data-containers3
             className="w-3/4 bg-blue-100 p-6 border-2 border-blue-400 rounded-lg shadow-lg text-center"
           >
-            <p>Warehouse 2: Warehouse 2 location .</p>
+            <p className="text-red-500">Warehouse 2: Warehouse 2 location .</p>
           </div>
 
           {/* Container 3 */}
@@ -28,7 +28,7 @@ const details: React.FC = () => {
             data-containers4
             className="w-3/4 bg-blue-100 p-6 border-2 border-blue-400 rounded-lg shadow-lg text-center"
           >
-            <p>Warehouse 3: Warehouse 3 location.</p>
+            <p className="text-red-500">Warehouse 3: Warehouse 3 location.</p>
           </div>
         </div>
       </div>
