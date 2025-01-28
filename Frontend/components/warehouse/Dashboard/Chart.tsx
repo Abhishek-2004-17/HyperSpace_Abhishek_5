@@ -1,63 +1,75 @@
 "use client";
 
-import React from 'react';
-import { Line } from 'react-chartjs-2';
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-  ChartData,
-  ChartOptions,
-} from 'chart.js';
+// Import necessary libraries for the pie chart
+import { Pie } from 'react-chartjs-2';
+import { Chart as ChartJS, ArcElement, Tooltip, Legend, TooltipItem } from 'chart.js';
 
-ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
+// Register necessary components of Chart.js
+ChartJS.register(ArcElement, Tooltip, Legend);
 
-const data: ChartData<'line'> = {
-  labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
-  datasets: [
-    {
-      label: 'Sales',
-      data: [33, 53, 85, 41, 44, 65, 72],
-      fill: false,
-      backgroundColor: '#1C64F2',
-      borderColor: '#1C64F2',
-      pointBackgroundColor: '#ff6384',
-      pointBorderColor: '#ff6384',
-      pointBorderWidth: 3,
-      pointHoverBackgroundColor: '#ffce56',
-      pointHoverBorderColor: '#ff6384',
-      pointHoverBorderWidth: 5,
-      pointRadius: 6,
-      pointHoverRadius: 8,
+// TypeScript interface for the PieChart props
+interface PieChartProps {
+  data: number[];          // Data for each segment in the pie chart
+  labels: string[];        // Labels for each segment
+  descriptions: string[];  // Descriptions for tooltips
+  warehouses: string[];    // Warehouse names
+}
+
+const PieChart: React.FC<PieChartProps> = ({ data, labels, descriptions, warehouses }) => {
+  // Defining the data for the pie chart
+  const chartData = {
+    labels: labels,
+    datasets: [
+      {
+        label: 'Remaining Products', // Label for the dataset
+        data: data,                  // Data to be displayed
+        backgroundColor: [
+          '#8D8741', // muted brown
+          '#659DBD', // soft blue
+          '#DAAD86', // light beige
+          '#BC986A', // classic tan
+          '#FBEEC1', // pale cream
+          '#C5C6C7'  // light gray
+        ],
+        borderColor: '#333',         // Darker border for contrast
+        borderWidth: 1,
+      },
+    ],
+  };
+
+  // Defining chart options including tooltip and legend customization
+  const chartOptions = {
+    responsive: true,
+    maintainAspectRatio: false, // Allows customizing the size
+    plugins: {
+      tooltip: {
+        callbacks: {
+          // Customize the tooltip content
+          label: (context: TooltipItem<'pie'>) => {
+            const index = context.dataIndex;
+            return `${labels[index]}: ${data[index]} left in ${warehouses[index]} (${descriptions[index]})`;
+          },
+        },
+      },
+      legend: {
+        position: 'top' as const,  // Position the legend at the top
+        labels: {
+          font: {
+            size: 14,  // Medium font size for the legend
+          },
+        },
+      },
     },
-  ],
+  };
+
+  return (
+    <div style={{ width: '400px', height: '400px', margin: '0 auto' }}>
+      <h2 style={{ textAlign: 'center', marginBottom: '1rem' }}>
+        Warehouse Product Distribution
+      </h2>
+      <Pie data={chartData} options={chartOptions} />
+    </div>
+  );
 };
 
-const options: ChartOptions<'line'> = {
-  responsive: true,
-  plugins: {
-    legend: {
-      position: 'top',
-    },
-    title: {
-      display: true,
-      text: 'Sales Over Time',
-    },
-  },
-  scales: {
-    y: {
-      beginAtZero: true,
-    },
-  },
-};
-
-const Chart: React.FC = () => {
-  return <Line data={data} options={options} />;
-};
-
-export default Chart;
+export default PieChart;
