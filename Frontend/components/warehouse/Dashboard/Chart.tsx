@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import React from 'react';
 import { Line } from 'react-chartjs-2';
@@ -11,11 +11,13 @@ import {
   Title,
   Tooltip,
   Legend,
+  ChartData,
+  ChartOptions,
 } from 'chart.js';
 
 ChartJS.register(CategoryScale, LinearScale, PointElement, LineElement, Title, Tooltip, Legend);
 
-const data = {
+const data: ChartData<'line'> = {
   labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
   datasets: [
     {
@@ -24,23 +26,23 @@ const data = {
       fill: false,
       backgroundColor: '#1C64F2',
       borderColor: '#1C64F2',
-      pointBackgroundColor: '#ff6384', // Custom point color
+      pointBackgroundColor: '#ff6384',
       pointBorderColor: '#ff6384',
-      pointBorderWidth: 3, // Custom point border width
-      pointHoverBackgroundColor: '#ffce56', // Point color on hover
+      pointBorderWidth: 3,
+      pointHoverBackgroundColor: '#ffce56',
       pointHoverBorderColor: '#ff6384',
-      pointHoverBorderWidth: 5, // Border width on hover
-      pointRadius: 6, // Point size
-      pointHoverRadius: 8, // Hovered point size
+      pointHoverBorderWidth: 5,
+      pointRadius: 6,
+      pointHoverRadius: 8,
     },
   ],
 };
 
-const options = {
+const options: ChartOptions<'line'> = {
   responsive: true,
   plugins: {
     legend: {
-      position: 'top' as const,
+      position: 'top',
     },
     title: {
       display: true,
