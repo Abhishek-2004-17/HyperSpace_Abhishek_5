@@ -20,7 +20,7 @@ const details: React.FC = () => {
             data-containers3
             className="w-3/4 bg-blue-100 p-6 border-2 border-blue-400 rounded-lg shadow-lg text-center"
           >
-            <p className="text-red-500">Warehouse 2: Warehouse 2 location .</p>
+            <p className="text-red-500">Warehouse 2: Warehouse 2 location.</p>
           </div>
 
           {/* Container 3 */}
