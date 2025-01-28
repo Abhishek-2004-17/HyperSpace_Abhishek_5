@@ -51,7 +51,7 @@ export const Registration = () => {
       setName("");
       setPassword("");
       setDocument(null);
-      router.push("/client");
+      router.push("/"); // Redirect to landing page
     } else {
       toast.error("Error creating account");
     }
