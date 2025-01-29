@@ -40,7 +40,7 @@ export const Registration = () => {
     formdata.append("document", document); // Attach document
 
     // Submit the form to the server
-    const res = await fetch("https://mvr40.pythonanywhere.com/api/v1/clientcreate", {
+    const res = await fetch("https://mvr40.pythonanywhere.com/api/v1/clientcreatedocument", {
       method: "POST",
       body: formdata,
     });
