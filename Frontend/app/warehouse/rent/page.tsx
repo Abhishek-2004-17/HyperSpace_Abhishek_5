@@ -1,7 +1,7 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { SideBar } from '@/components/warehouse/SideBar'
+import { useState } from "react";
+import { SideBar } from '@/components/warehouse/SideBar';
 
 // Define the type for rent details
 interface RentDetail {
@@ -14,14 +14,14 @@ interface RentDetail {
 }
 
 export default function RentPage() {
-  const rentDetails: RentDetail[] = [
+  const [rentDetails, setRentDetails] = useState<RentDetail[]>([
     {
       id: 1,
       warehouse: "A",
       productName: "Electronics",
-      status: "Pending", // All statuses set to "Pending"
-      dueDate: "2025-02-10 20:04", // Hardcoded random time
-      spaceRequired: 18, // Hardcoded random space required
+      status: "Pending",
+      dueDate: "2025-02-10 20:04",
+      spaceRequired: 18,
     },
     {
       id: 2,
@@ -63,9 +63,11 @@ export default function RentPage() {
       dueDate: "2025-04-15 10:30",
       spaceRequired: 61,
     },
-  ];
+  ]);
 
-  const router = useRouter();
+  const handleAction = (id: number) => {
+    setRentDetails((prevDetails) => prevDetails.filter((rent) => rent.id !== id));
+  };
 
   return (
     <div className="min-h-screen flex bg-royal-blue">
@@ -83,56 +85,31 @@ export default function RentPage() {
           <table className="w-full border-collapse border border-gray-300 text-gray-900 dark:text-white">
             <thead>
               <tr className="bg-goldenrod">
-                <th className="border border-gray-300 px-4 py-2 text-left">
-                  Warehouse name
-                </th>
-                <th className="border border-gray-300 px-4 py-2 text-left">
-                  Product id
-                </th>
-                <th className="border border-gray-300 px-4 py-2 text-left">
-                  Space Required
-                </th>
-                <th className="border border-gray-300 px-4 py-2 text-left">
-                  Status
-                </th>
-                <th className="border border-gray-300 px-4 py-2 text-left">
-                  Date and time
-                </th>
-                <th className="border border-gray-300 px-4 py-2 text-left">
-                  Action
-                </th>
+                <th className="border border-gray-300 px-4 py-2 text-left">Warehouse name</th>
+                <th className="border border-gray-300 px-4 py-2 text-left">Product id</th>
+                <th className="border border-gray-300 px-4 py-2 text-left">Space Required</th>
+                <th className="border border-gray-300 px-4 py-2 text-left">Status</th>
+                <th className="border border-gray-300 px-4 py-2 text-left">Date and time</th>
+                <th className="border border-gray-300 px-4 py-2 text-left">Action</th>
               </tr>
             </thead>
             <tbody>
               {rentDetails.map((rent) => (
                 <tr key={rent.id} className="hover:bg-lightgoldenrodyellow">
-                  <td className="border border-gray-300 px-4 py-2">
-                    {rent.warehouse}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2">
-                    {rent.id}
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2 text-center">
-                    {rent.spaceRequired} m²
-                  </td>
-                  <td
-                    className={`border border-gray-300 px-4 py-2 text-red-600`} // Status is always Pending
-                  >
-                    Pending
-                  </td>
-                  <td className="border border-gray-300 px-4 py-2">
-                    {rent.dueDate}
-                  </td>
+                  <td className="border border-gray-300 px-4 py-2">{rent.warehouse}</td>
+                  <td className="border border-gray-300 px-4 py-2">{rent.id}</td>
+                  <td className="border border-gray-300 px-4 py-2 text-center">{rent.spaceRequired} m²</td>
+                  <td className={`border border-gray-300 px-4 py-2 text-red-600`}>Pending</td>
+                  <td className="border border-gray-300 px-4 py-2">{rent.dueDate}</td>
                   <td className="border border-gray-300 px-4 py-2 flex space-x-2">
-                    {/* Both Accept and Deny buttons for all entries */}
                     <button
-                      onClick={() => router.push("/client/payment")}
+                      onClick={() => handleAction(rent.id)}
                       className="bg-blue-500 text-white px-4 py-2 rounded hover:bg-blue-600"
                     >
                       Accept
                     </button>
                     <button
-                      onClick={() => router.push("/client/deny")}
+                      onClick={() => handleAction(rent.id)}
                       className="bg-red-500 text-white px-4 py-2 rounded hover:bg-red-600"
                     >
                       Deny
