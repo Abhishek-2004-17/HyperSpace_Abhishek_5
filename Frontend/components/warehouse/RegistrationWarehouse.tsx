@@ -114,7 +114,7 @@ export const RegistrationWarehouse = () => {
                 </div>
                 <div>
                   <label className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">
-                    Upload Documents (Single PDF containing Business Registration, ID Proof, and Tax Certificate)
+                    Upload Documents (Single PDF containing Warehouse Registration, ID Proof, Proof of ownership)
                   </label>
                   <input
                     type="file"
