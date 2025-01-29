@@ -39,13 +39,12 @@ export const Tables = () => {
 
       // Transform the response to match the ProductDetails interface
       const products = data.map((product: string[]) => ({
-        name: product[1],
-        price: parseFloat(product[3]), // Ensure price is a number
-        category: product[4],
-        spaceRequirement: product[5], // Assuming space requirement is at index 5
-        type: product[6] === "Static" ? "Static" : "Dynamic", // Assuming type is at index 6
+        name: product[1],  // Correct index for Name
+        price: parseFloat(product[2]),  // Correct index for Price
+        spaceRequirement: product[3],  // Correct index for Space Requirement
+        type: product[4]?.toLowerCase() === "static" ? "Static" : "Dynamic",  // Correct index for Type
       }));
-
+      
       setProducts(products);
     } catch (err: unknown) {  // Changed to 'unknown'
       if (err instanceof Error) {
