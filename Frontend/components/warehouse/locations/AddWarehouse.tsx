@@ -29,8 +29,8 @@ const AddWarehouse: FC = () => {
     const formdata = new FormData();
     formdata.append("name", warehouseName);
     formdata.append("location", location);
-    formdata.append("availableSpace", availableSpace.toString());
-    formdata.append("client", client);
+    formdata.append("capacity", availableSpace.toString());
+    formdata.append("client_id", client);
 
     const res = await fetch(
       "https://mvr40.pythonanywhere.com/api/v1/addwarehouse",
