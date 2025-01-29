@@ -1,4 +1,4 @@
-import { Login } from "@/components/client/Login";
+import { Login } from "@/components/admin/login";
 import React from "react";
 
 export default function Page() {
