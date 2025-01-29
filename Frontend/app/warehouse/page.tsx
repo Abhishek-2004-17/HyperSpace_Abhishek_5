@@ -1,48 +1,93 @@
-import BarChart from '@/components/warehouse/Dashboard/Chart';  // Correct import for BarChart
-import { SideBar } from '@/components/warehouse/SideBar';  // Sidebar component for navigation
-import React from 'react';
+"use client"
 
-const WarehouseDashboard: React.FC = () => {
-  // Sample data for the bar chart with both available and total space for each warehouse
-  const data = [
-    { available: 200, total: 300 },  // Warehouse A: Available 200, Total 300
-    { available: 100, total: 200 },  // Warehouse B: Available 100, Total 200
-    { available: 150, total: 250 },  // Warehouse C: Available 150, Total 250
-  ];
+import { Bar, BarChart, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from "recharts";
+import { SideBar } from '@/components/warehouse/SideBar';
 
-  // Labels for the chart (warehouse names)
-  const labels = [
-    'Warehouse A',
-    'Warehouse B',
-    'Warehouse C',
-  ];
+const data = [
+  {
+    warehouse: "Warehouse A",
+    totalSpace: 1000,
+    availableSpace: 800,
+  },
+  {
+    warehouse: "Warehouse B",
+    totalSpace: 800,
+    availableSpace: 400,
+  },
+  {
+    warehouse: "Warehouse C",
+    totalSpace: 1200,
+    availableSpace: 600,
+  },
+];
 
-  // Descriptions for tooltips
-  const descriptions = [
-    'Available space in Warehouse A',
-    'Available space in Warehouse B',
-    'Available space in Warehouse C',
-  ];
+export default function WarehouseChart() {
 
   return (
-    <div style={{ display: 'flex' }}>
-      {/* Sidebar component */}
-      <SideBar />
+    <div className="min-h-screen flex bg-royal-blue">
+      {/* Sidebar Section */}
+      <div className="w-64 bg-gray-800 text-white p-6">
+        <SideBar />
+      </div>
 
-      {/* Main content for Warehouse Dashboard */}
-      <div style={{ flex: 1, padding: '2rem' }}>
-        <h1 style={{ textAlign: 'center', marginBottom: '2rem' }}>
-          Warehouse Management Dashboard
+      {/* Main Content Section */}
+      <div className="flex-1 p-4 overflow-x-auto">
+        <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
+          Warehouse Space Overview
         </h1>
-        {/* BarChart component displaying warehouse data */}
-        <BarChart
-          data={data}           // Passing the available and total space data directly
-          labels={labels}       // Labels for the data
-          descriptions={descriptions}  // Descriptions for tooltips
-        />
+        <div className="w-full max-w-5xl bg-gold rounded-lg shadow-lg p-6 overflow-x-auto">
+          <div className="h-[400px] w-full relative">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart
+                data={data}
+                margin={{ top: 20, right: 40, bottom: 5, left: 32 }}
+                barGap={-10}
+                barCategoryGap={50}
+              >
+                <Legend
+                  align="right"
+                  verticalAlign="top"
+                  wrapperStyle={{
+                    position: "absolute",
+                    top: -20,
+                    right: 0,
+                  }}
+                />
+                <XAxis
+                  dataKey="warehouse"
+                  tickLine={false}
+                  axisLine={false}
+                  fontSize={12}
+                />
+                <YAxis tickLine={false} axisLine={false} fontSize={12} />
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "rgb(24 24 27)",
+                    border: "1px solid rgb(63 63 70)",
+                    borderRadius: "6px",
+                  }}
+                  labelStyle={{ color: "rgb(244 244 245)" }}
+                  itemStyle={{ color: "rgb(244 244 245)" }}
+                />
+                <Bar
+                  dataKey="totalSpace"
+                  fill="rgb(255, 99, 71)"
+                  radius={[4, 4, 0, 0]}
+                  maxBarSize={80}
+                  name="Total Space"
+                />
+                <Bar
+                  dataKey="availableSpace"
+                  fill="rgb(100, 149, 237)"
+                  radius={[4, 4, 0, 0]}
+                  maxBarSize={80}
+                  name="Available Space"
+                />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
       </div>
     </div>
   );
-};
-
-export default WarehouseDashboard;
+}
