@@ -1,8 +1,8 @@
-import AddProduct from "@/components/warehouse/locations/AddProduct";
+import AddWarehouse from "@/components/warehouse/locations/AddWarehouse";
 import React from "react";
 
 export default function page() {
   return <>
-    <AddProduct />
+    <AddWarehouse />
   </>;
 }

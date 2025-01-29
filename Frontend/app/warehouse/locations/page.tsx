@@ -4,18 +4,17 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { SideBar } from "@/components/warehouse/SideBar"; // Import Sidebar
 
-interface ProductDetails {
+interface WarehouseDetails {
   name: string;
-  description: string;
-  category: string;
-  price: string;
+  location: string;
+  availableSpace: string;
 }
 
 const LocationsPage = () => {
-  const [products, setProducts] = useState<ProductDetails[]>([]);
+  const [warehouses, setWarehouses] = useState<WarehouseDetails[]>([]);
   const router = useRouter();
 
-  async function getProducts() {
+  async function getWarehouses() {
     const email = localStorage.getItem("client") || "";
 
     if (email === "") {
@@ -24,22 +23,21 @@ const LocationsPage = () => {
     }
 
     const res = await fetch(
-      `https://mvr40.pythonanywhere.com/api/v1/get_product_by_client_id?client_id=${email}`
+      `https://mvr40.pythonanywhere.com/api/v1/get_warehouse_by_client_id?client_id=${email}`
     );
     const data = await res.json();
 
-    const products = data.map((product: string[]) => ({
-      name: product[1],
-      description: product[2],
-      price: product[3],
-      category: product[4],
+    const warehouses = data.map((warehouse: string[]) => ({
+      name: warehouse[1],
+      location: warehouse[2],
+      availableSpace: warehouse[3],
     }));
 
-    setProducts(products);
+    setWarehouses(warehouses);
   }
 
   useEffect(() => {
-    getProducts();
+    getWarehouses();
   }, []);
 
   return (
@@ -48,36 +46,33 @@ const LocationsPage = () => {
       <SideBar />
 
       <div className="sm:ml-72 mx-16 my-12 relative">
-        {/* Add Product Button */}
+        {/* Add Warehouse Button */}
         <button
           type="button"
-          onClick={() => router.push("/client/products/add")}
+          onClick={() => router.push("/warehouse/locations/add")}
           className="absolute top-6 right-6 text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"
         >
-          Add Product
+          Add Warehouse
         </button>
 
-        <h2 className="text-3xl font-bold mb-8">Locations</h2>
+        <h2 className="text-3xl font-bold mb-8">Warehouses</h2>
         <div className="relative overflow-x-auto">
           <table className="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400 table-fixed">
             <thead className="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
               <tr>
                 <th scope="col" className="px-6 py-3">
-                  Product Name
+                  Warehouse Name
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Description
+                  Location
                 </th>
                 <th scope="col" className="px-6 py-3">
-                  Category
-                </th>
-                <th scope="col" className="px-6 py-3">
-                  Price
+                  Available Space
                 </th>
               </tr>
             </thead>
             <tbody>
-              {products.map((product, index) => (
+              {warehouses.map((warehouse, index) => (
                 <tr
                   className="bg-white border-b dark:bg-gray-800 dark:border-gray-700"
                   key={index}
@@ -86,11 +81,10 @@ const LocationsPage = () => {
                     scope="row"
                     className="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white"
                   >
-                    {product.name}
+                    {warehouse.name}
                   </th>
-                  <td className="px-6 py-4">{product.description}</td>
-                  <td className="px-6 py-4">{product.category}</td>
-                  <td className="px-6 py-4">{product.price}</td>
+                  <td className="px-6 py-4">{warehouse.location}</td>
+                  <td className="px-6 py-4">{warehouse.availableSpace}</td>
                 </tr>
               ))}
             </tbody>
