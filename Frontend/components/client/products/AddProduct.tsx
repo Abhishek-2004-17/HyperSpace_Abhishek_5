@@ -35,7 +35,6 @@ const AddProduct: FC = () => {
     const formdata = new FormData();
     formdata.append("name", productName);
     formdata.append("price", price.toString());
-    formdata.append("category", "any");
     formdata.append("spaceRequirement", spaceRequirement);
     formdata.append("type", type);
     formdata.append("client", client);
