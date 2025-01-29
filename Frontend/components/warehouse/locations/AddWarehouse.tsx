@@ -22,7 +22,7 @@ const AddWarehouse: FC = () => {
     const client = localStorage.getItem("client") || "";
 
     if (client == "") {
-      router.push("/warehouse/login");
+      router.push("/client/login");
       return;
     }
 
@@ -42,7 +42,7 @@ const AddWarehouse: FC = () => {
 
     if (res.status == 200) {
       toast.success("Warehouse added successfully");
-      router.push("/client/warehouses");
+      router.push("/warehouse/locations");
     } else {
       toast.error("Error adding warehouse");
     }
