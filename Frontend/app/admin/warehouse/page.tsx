@@ -24,7 +24,7 @@ export default function ClientVerification() {
       const response = await axios.get("/api/clients/pending");
       setClients(response.data);
     } catch (error) {
-      console.error("Error fetching clients", error);
+      console.error("Error fetching Wareshouse", error);
     }
   };
 
@@ -32,15 +32,15 @@ export default function ClientVerification() {
     try {
       await axios.post("/api/clients/verify", { id: clientId });
       setClients(clients.filter(client => client.id !== clientId)); // Remove from list
-      alert("Client verified and notified successfully");
+      alert("Warehouse verified and notified successfully");
     } catch (error) {
-      console.error("Error verifying client", error);
+      console.error("Error verifying Warehouse", error);
     }
   };
 
   return (
     <div className="p-6">
-      <h1 className="text-2xl font-bold mb-4">Client Verification</h1>
+      <h1 className="text-2xl font-bold mb-4">Warehouse Verification</h1>
       <div className="grid gap-4">
         {clients.length === 0 ? (
           <p>No pending clients</p>
@@ -65,7 +65,7 @@ export default function ClientVerification() {
                   className="mt-4 bg-green-600 text-white"
                   onClick={() => verifyClient(client.id)}
                 >
-                  Verify Client
+                  Verify Warehouse
                 </Button>
               </CardContent>
             </Card>
