@@ -33,6 +33,14 @@ export const Login = () => {
       localStorage.setItem("client", email); //hardcoded👀
       router.push("/client");
     }
+    else if(res.status == 201){
+      toast.error("Not verified");
+        return;
+    }
+    else if(res.status == 202){
+      toast.error("Not registered");
+      router.push("/client/register");
+    }
     else {
       toast.error("Login failed");
       return;
