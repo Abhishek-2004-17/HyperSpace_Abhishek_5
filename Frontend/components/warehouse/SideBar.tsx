@@ -1,14 +1,16 @@
-"use client";
+"use client"
 
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
 export const SideBar = () => {
+
   const router = useRouter();
 
   const handlesignout = () => {
     localStorage.removeItem('client');
+    
     router.push('/warehouse/login');
   };
 
@@ -20,6 +22,7 @@ export const SideBar = () => {
 
   return (
     <>
+    
       <button
         data-drawer-target="default-sidebar"
         data-drawer-toggle="default-sidebar"
@@ -45,12 +48,12 @@ export const SideBar = () => {
 
       <aside
         id="default-sidebar"
-        className="fixed top-0 left-0 z-50 w-64 min-w-[16rem] max-w-[16rem] h-screen transition-transform sm:translate-x-0 overflow-hidden overflow-x-hidden bg-gray-50 dark:bg-gray-800"
+        className="fixed top-0 left-0 z-40 w-64 h-screen transition-transform -translate-x-full sm:translate-x-0"
         aria-label="Sidebar"
       >
-        <div className="h-full px-3 py-4 overflow-y-auto">
+        <div className="h-full px-3 py-4 overflow-y-auto bg-gray-50 dark:bg-gray-800">
           <ul className="space-y-2 font-medium">
-            <li className="my-5">
+          <li className="my-5">
               <Link href={"/"} className="text-2xl font-semibold text-gray-900 dark:text-white">
                 Warehouse Dashboard
               </Link>
@@ -73,6 +76,7 @@ export const SideBar = () => {
                 <span className="ms-3">Dashboard</span>
               </Link>
             </li>
+          
             <li>
               <a
                 href="/warehouse/locations"
@@ -87,7 +91,8 @@ export const SideBar = () => {
                 >
                   <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
                 </svg>
-                <span className="flex-1 ms-3 whitespace-nowrap">Modify Existing</span>
+                <span className="flex-1 ms-3 whitespace-nowrap"> Modify Existing</span>
+                
               </a>
             </li>
             <li>
@@ -105,8 +110,10 @@ export const SideBar = () => {
                   <path d="m17.418 3.623-.018-.008a6.713 6.713 0 0 0-2.4-.569V2h1a1 1 0 1 0 0-2h-2a1 1 0 0 0-1 1v2H9.89A6.977 6.977 0 0 1 12 8v5h-2V8A5 5 0 1 0 0 8v6a1 1 0 0 0 1 1h8v4a1 1 0 0 0 1 1h2a1 1 0 0 0 1-1v-4h6a1 1 0 0 0 1-1V8a5 5 0 0 0-2.582-4.377ZM6 12H4a1 1 0 0 1 0-2h2a1 1 0 0 1 0 2Z" />
                 </svg>
                 <span className="flex-1 ms-3 whitespace-nowrap">Renting</span>
+                
               </a>
             </li>
+            
             <li onClick={handlesignout}>
               <a
                 href="#"
@@ -121,14 +128,15 @@ export const SideBar = () => {
                 >
                   <path d="M5 5V.13a2.96 2.96 0 0 0-1.293.749L.879 3.707A2.96 2.96 0 0 0 .13 5H5Z" />
                   <path d="M6.737 11.061a2.961 2.961 0 0 1 .81-1.515l6.117-6.116A4.839 4.839 0 0 1 16 2.141V2a1.97 1.97 0 0 0-1.933-2H7v5a2 2 0 0 1-2 2H0v11a1.969 1.969 0 0 0 1.933 2h12.134A1.97 1.97 0 0 0 16 18v-3.093l-1.546 1.546c-.413.413-.94.695-1.513.81l-3.4.679a2.947 2.947 0 0 1-1.85-.227 2.96 2.96 0 0 1-1.635-3.257l.681-3.397Z" />
-                  <path d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a.96.96 0 0 0-.267-1.463l-3.397-.681a.96.96 0 0 0-.18.145l-1.453 1.453-4.166-.832-.003.003c-.276-.47-.632-.897-.963-1.198-.099-.079-.17-.173-.265-.238-.333-.084-.682-.152-.973-.174-.053-.01-.113-.015-.167-.015-.015 0-.029.002-.044.004-.066-.003-.125-.02-.181-.02-.442 0-.834.223-.996.598-.235.487-.086.992.29 1.272.002.001.002.002.004.003.451.346 1.071.418 1.598.14.322-.173.506-.514.465-.869Z" />
+                  <path d="M8.961 16a.93.93 0 0 0 .189-.019l3.4-.679a.961.961 0 0 0 .49-.263l6.118-6.117a2.884 2.884 0 0 0-4.079-4.078l-6.117 6.117a.96.96 0 0 0-.263.491l-.679 3.4A.961.961 0 0 0 8.961 16Zm7.477-9.8a.958.958 0 0 1 .68-.281.961.961 0 0 1 .682 1.644l-.315.315-1.36-1.36.313-.318Zm-5.911 5.911 4.236-4.236 1.359 1.359-4.236 4.237-1.7.339.341-1.699Z" />
                 </svg>
-                <span className="ms-3">Sign Out</span>
+                <span className="flex-1 ms-3 whitespace-nowrap">Log Out</span>
               </a>
             </li>
           </ul>
         </div>
       </aside>
+
     </>
   );
 };
