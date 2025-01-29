@@ -1,95 +1,94 @@
-'use client';  // Add this line to make sure this is treated as a Client Component
+"use client";
 
-import { Bar } from 'react-chartjs-2';
-import { Chart as ChartJS, BarElement, CategoryScale, LinearScale, Tooltip, Legend } from 'chart.js';
-import { TooltipItem } from 'chart.js';
+import { Bar, BarChart, XAxis, YAxis, Tooltip, Legend, ResponsiveContainer } from "recharts";
 
-// Register the necessary components for Chart.js
-ChartJS.register(BarElement, CategoryScale, LinearScale, Tooltip, Legend);
+const data = [
+  {
+    warehouse: "Warehouse A",
+    totalSpace: 1000,
+    availableSpace: 800,
+  },
+  {
+    warehouse: "Warehouse B",
+    totalSpace: 800,
+    availableSpace: 400,
+  },
+  {
+    warehouse: "Warehouse C",
+    totalSpace: 1200,
+    availableSpace: 600,
+  },
+];
 
-interface BarChartProps {
-  data: { available: number; total: number }[];  // Data for the bar chart (available and total space)
-  labels: string[];         // Labels for the chart (e.g., warehouse names)
-  descriptions: string[];   // Descriptions for tooltips (e.g., available/unavailable space)
-}
-
-const BarChart: React.FC<BarChartProps> = ({ data, labels, descriptions }) => {
-  // Setting up the data for the bar chart with both datasets
-  const chartData = {
-    labels: labels,  // Warehouse names as labels
-    datasets: [
-      {
-        label: 'Total Space',
-        data: data.map(item => item.total),  // Total space values for each warehouse
-        backgroundColor: '#FF6347',  // Red color for the bars (total space)
-        borderColor: '#333',
-        borderWidth: 1,
-        barThickness: 20,  // Adjust bar thickness
-        categoryPercentage: 0.8, // Adjust bar grouping
-        barPercentage: 1.0,  // Adjust bar spacing
-      },
-      {
-        label: 'Available Space',
-        data: data.map(item => item.available),  // Available space values for each warehouse
-        backgroundColor: '#659DBD',  // Blue color for the bars (available space)
-        borderColor: '#333',
-        borderWidth: 1,
-        barThickness: 20,  // Adjust bar thickness
-        categoryPercentage: 0.8, // Adjust bar grouping
-        barPercentage: 1.0,  // Adjust bar spacing
-      },
-    ],
-  };
-
-  // Chart options for customization
-  const chartOptions = {
-    responsive: true,
-    maintainAspectRatio: false,  // Allow chart size to adjust independently of aspect ratio
-    indexAxis: 'x' as const,  // Explicitly cast indexAxis as 'x' to avoid the type error
-    plugins: {
-      tooltip: {
-        callbacks: {
-          label: (context: TooltipItem<'bar'>) => {
-            const index = context.dataIndex;
-            const label = descriptions[index];
-            const value = context.raw as number;  // Ensure raw is treated as a number
-            return `${label}: ${value} sq. ft.`;  // Tooltip content customization
-          },
-        },
-      },
-      legend: {
-        position: 'top' as const,
-        labels: {
-          font: {
-            size: 14,
-          },
-        },
-      },
-    },
-    scales: {
-      x: {
-        beginAtZero: true, // Start the X-axis from 0
-        ticks: {
-          autoSkip: true,  // Automatically skip labels to avoid overlap
-          maxRotation: 0,  // Prevent label rotation on X-axis
-          padding: 10,     // Add some padding for better spacing
-        },
-      },
-      y: {
-        beginAtZero: true, // Start the Y-axis from 0
-        ticks: {
-          stepSize: 50, // Adjust this based on your data range
-          min: 0,       // Minimum value for Y-axis
-        },
-      },
-    },
-  };
-
+export default function WarehouseChart() {
   return (
-    <div style={{ position: 'relative', width: '80%', height: '400px', margin: '0 auto' }}> {/* Set width to 80% and center */}
-      <Bar data={chartData} options={chartOptions} />
+    <div className="flex min-h-screen">
+      {/* Sidebar */}
+      <div className="w-64 bg-gray-800 text-white p-4 fixed top-0 left-0 h-full">
+        <h3 className="text-xl font-semibold">Sidebar</h3>
+      </div>
+
+      {/* Main Content */}
+      <div className="flex-grow ml-64 p-6">
+        <div className="w-full rounded-lg border bg-card p-6 shadow-md">
+          <h2 className="text-xl font-semibold mb-4">Warehouse Space Overview</h2>
+          <div className="h-[400px] w-full relative">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart
+                data={data}
+                margin={{ top: 20, right: 40, bottom: 5, left: 32 }}
+                barGap={-10}
+                barCategoryGap={50}
+              >
+                {/* Legend */}
+                <Legend
+                  align="right"
+                  verticalAlign="top"
+                  wrapperStyle={{
+                    position: "absolute",
+                    top: -20,
+                    right: -20,
+                  }}
+                />
+                {/* X and Y Axis */}
+                <XAxis dataKey="warehouse" tickLine={false} axisLine={false} fontSize={12} />
+                <YAxis tickLine={false} axisLine={false} fontSize={12} />
+
+                {/* Tooltip */}
+                <Tooltip
+                  contentStyle={{
+                    backgroundColor: "rgb(24 24 27)",
+                    border: "1px solid rgb(63 63 70)",
+                    borderRadius: "6px",
+                  }}
+                  labelStyle={{ color: "rgb(244 244 245)" }}
+                  itemStyle={{ color: "rgb(244 244 245)" }}
+                />
+
+                {/* Bars */}
+                <Bar
+                  dataKey="totalSpace"
+                  fill="rgb(255, 99, 71)"
+                  radius={[4, 4, 0, 0]}
+                  maxBarSize={80}
+                  name="Total Space"
+                  isAnimationActive={false}
+                  style={{ pointerEvents: "none" }}
+                />
+                <Bar
+                  dataKey="availableSpace"
+                  fill="rgb(100, 149, 237)"
+                  radius={[4, 4, 0, 0]}
+                  maxBarSize={80}
+                  name="Available Space"
+                  isAnimationActive={false}
+                  style={{ pointerEvents: "none" }}
+                />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </div>
+      </div>
     </div>
   );
-};
-
-export default BarChart;
+}
