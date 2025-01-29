@@ -70,7 +70,7 @@ export default function RentPage() {
   return (
     <div className="min-h-screen bg-royal-blue flex">
       {/* Sidebar Section */}
-      <div className="w-1/4 bg-gray-800 text-white p-6">
+      <div className="w-64 max-w-[16rem] bg-gray-800 text-white p-6">
         <SideBar />
       </div>
 
