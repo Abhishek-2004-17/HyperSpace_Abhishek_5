@@ -1,23 +1,27 @@
-"use client";
-
-import PieChart from '@/components/warehouse/Dashboard/Chart';  // Make sure the path is correct for PieChart
+import BarChart from '@/components/warehouse/Dashboard/Chart';  // Correct import for BarChart
 import { SideBar } from '@/components/warehouse/SideBar';  // Sidebar component for navigation
 import React from 'react';
 
 const WarehouseDashboard: React.FC = () => {
-  // Sample data for the pie chart
-  const data = [200, 100]; // Remaining product counts in various categories
+  // Sample data for the bar chart with both available and total space for each warehouse
+  const data = [
+    { available: 200, total: 300 },  // Warehouse A: Available 200, Total 300
+    { available: 100, total: 200 },  // Warehouse B: Available 100, Total 200
+    { available: 150, total: 250 },  // Warehouse C: Available 150, Total 250
+  ];
+
+  // Labels for the chart (warehouse names)
   const labels = [
-    'Warehouse A',  // Label for available space
-    'Warehouse B', // Label for unavailable space
+    'Warehouse A',
+    'Warehouse B',
+    'Warehouse C',
   ];
+
+  // Descriptions for tooltips
   const descriptions = [
-    'Avaliable space',  // Description for available space
-    'Avaliable space',  // Description for unavailable space
-  ];
-  const warehouses = [
-    'A Warehouse',  // Name of the warehouse 1
-    'B Warehouse',  // Name of the warehouse 2
+    'Available space in Warehouse A',
+    'Available space in Warehouse B',
+    'Available space in Warehouse C',
   ];
 
   return (
@@ -30,12 +34,11 @@ const WarehouseDashboard: React.FC = () => {
         <h1 style={{ textAlign: 'center', marginBottom: '2rem' }}>
           Warehouse Management Dashboard
         </h1>
-        {/* PieChart component displaying warehouse data */}
-        <PieChart
-          data={data}           // Passing product counts
-          labels={labels}       // Passing labels for the data
+        {/* BarChart component displaying warehouse data */}
+        <BarChart
+          data={data}           // Passing the available and total space data directly
+          labels={labels}       // Labels for the data
           descriptions={descriptions}  // Descriptions for tooltips
-          warehouses={warehouses} // Warehouse names
         />
       </div>
     </div>
