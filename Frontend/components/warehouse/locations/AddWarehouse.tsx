@@ -29,8 +29,8 @@ const AddWarehouse: FC = () => {
     const formdata = new FormData();
     formdata.append("name", warehouseName);
     formdata.append("location", location);
-    formdata.append("availableSpace", availableSpace.toString());
-    formdata.append("client", client);
+    formdata.append("capacity", availableSpace.toString());
+    formdata.append("client_id", client);
 
     const res = await fetch(
       "https://mvr40.pythonanywhere.com/api/v1/addwarehouse",
@@ -42,7 +42,7 @@ const AddWarehouse: FC = () => {
 
     if (res.status == 200) {
       toast.success("Warehouse added successfully");
-      router.push("/client/warehouses");
+      router.push("/warehouse/locations");
     } else {
       toast.error("Error adding warehouse");
     }
@@ -50,7 +50,7 @@ const AddWarehouse: FC = () => {
 
   useEffect(() => {
     if (localStorage.getItem("client") == null) {
-      router.push("/client/login");
+      router.push("/warehouse/login");
     }
   }, []);
 
