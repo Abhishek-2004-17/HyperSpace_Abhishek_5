@@ -68,18 +68,18 @@ export default function RentPage() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-royal-blue flex">
+    <div className="min-h-screen flex bg-royal-blue">
       {/* Sidebar Section */}
-      <div className="w-1/4 bg-gray-800 text-white p-6">
+      <div className="w-64 bg-gray-800 text-white p-6">
         <SideBar />
       </div>
 
       {/* Main Content Section */}
-      <div className="flex-1 p-4">
+      <div className="flex-1 p-4 overflow-x-auto">
         <h1 className="text-3xl font-bold text-gray-900 dark:text-white mb-6">
           Rent Management
         </h1>
-        <div className="w-full max-w-5xl bg-gold rounded-lg shadow-lg p-6">
+        <div className="w-full max-w-5xl bg-gold rounded-lg shadow-lg p-6 overflow-x-auto">
           <table className="w-full border-collapse border border-gray-300 text-gray-900 dark:text-white">
             <thead>
               <tr className="bg-goldenrod">
