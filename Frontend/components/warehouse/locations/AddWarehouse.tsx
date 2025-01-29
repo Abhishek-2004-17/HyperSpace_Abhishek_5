@@ -42,7 +42,7 @@ const AddWarehouse: FC = () => {
 
     if (res.status == 200) {
       toast.success("Warehouse added successfully");
-      router.push("/client/warehouses");
+      router.push("/warehouse/locations");
     } else {
       toast.error("Error adding warehouse");
     }
