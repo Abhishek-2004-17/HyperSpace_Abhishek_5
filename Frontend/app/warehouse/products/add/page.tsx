@@ -1,4 +1,4 @@
-import AddWarehouse from "@/components/warehouse/locations/AddWarehouse";
+import AddWarehouse from "@/components/warehouse/products/AddWarehouse";
 import React from "react";
 
 export default function page() {
