@@ -22,7 +22,7 @@ const AddWarehouse: FC = () => {
     const client = localStorage.getItem("client") || "";
 
     if (client == "") {
-      router.push("/client/login");
+      router.push("/warehouse/login");
       return;
     }
 
