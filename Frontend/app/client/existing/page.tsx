@@ -11,12 +11,12 @@ const labels = [
   "Appliances",
 ];
 const warehouses = [
-  "A Warehouse",
-  "B Warehouse",
-  "C Warehouse",
-  "A Warehouse",
-  "B Warehouse",
-  "C Warehouse",
+  "Warehouse A",
+  "Warehouse B",
+  "Warehouse C",
+  "Warehouse A",
+  "Warehouse B",
+  "Warehouse C",
 ];
 const locations = ["Panvel", "Kharghar", "Nerul", "Vashi", "Seawoods", "Belapur"];
 const initialQuantities = [300, 200, 150, 100, 120, 180]; // Initial stock values

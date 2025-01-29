@@ -61,11 +61,11 @@ export default function RentPage() {
   const router = useRouter();
 
   return (
-    <div className="min-h-screen bg-royal-blue flex">
-      {/* Sidebar Section */}
-      <div className="w-1/4 bg-gray-800 text-white p-6">
-        <SideBar />
-      </div>
+      <div className="min-h-screen flex bg-royal-blue">
+            {/* Sidebar Section */}
+            <div className="w-64 bg-gray-800 text-white p-6">
+              <SideBar />
+            </div>
 
       {/* Main Content Section */}
       <div className="flex-1 p-4">
