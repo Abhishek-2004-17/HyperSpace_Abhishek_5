@@ -3,7 +3,7 @@
 A platform for connecting clients with rented warehouses for AI-driven product management and hyperlocal deliveries.
 
 This project is split into two parts:
-1. **Backend** (located at `HyperSpace/Backend1`)  
+1. **Backend** (located at `HyperSpace/Backend`)  
 2. **Frontend** (located at `HyperSpace/Frontend`)
 
 Below is a brief overview, setup steps, file structure, and references to help you get the application running quickly—especially useful for hackathons.
