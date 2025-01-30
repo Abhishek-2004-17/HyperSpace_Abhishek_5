@@ -6,7 +6,7 @@ Team Number: 5
 
 Team Name : Ice-Cream truck  
 
-Lab :  AIIT
+Lab :  AIT
 
 Team Members Name : 
 1. Abhishek S
