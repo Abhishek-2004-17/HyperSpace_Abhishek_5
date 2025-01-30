@@ -13,9 +13,6 @@ export default function UserTable() {
     { id: 5, name: "Ethan Hunt", email: "ethan@example.com" },
   ]);
 
-  //const dialogRef = useRef<HTMLDialogElement>(null);
-  // const [message, setMessage] = useState("");
-
   const handleVerification = (id: number, status: boolean) => {
     alert(status ? "User is verified!" : "User not verified");
     setUsers(users.filter((user) => user.id !== id));  // This will remove the user after verification
@@ -30,7 +27,7 @@ export default function UserTable() {
       <div className="p-4 max-w-3xl mx-auto flex-1">
         <table className="w-full border-collapse border border-gray-300">
           <thead>
-            <tr className="bg-gray-100">
+            <tr className="bg-black text-white">
               <th className="border p-2">Name</th>
               <th className="border p-2">Email</th>
               <th className="border p-2 text-center">Document</th>
