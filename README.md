@@ -2,6 +2,22 @@
 
 A platform for connecting clients with rented warehouses for AI-driven product management and hyperlocal deliveries.
 
+Team Number: 5  
+
+Team Name : Ice-Cream truck  
+
+Lab :  AIIT
+
+Team Members Name : 
+1. Abhishek S
+2. Pranjali Sawant
+3. Riane Vinayak
+4. Nidhi Rao
+
+Project Deployement link : https://hyper-space-abhishek-5-cxr46cwxo-abhisheks-projects-73d178e4.vercel.app/
+
+Video Link : https://drive.google.com/drive/folders/1ohU06cmtpIOxK0mSuHFXcIhyEF7Xzk__?usp=drive_link
+
 This project is split into two parts:
 1. **Backend** (located at `HyperSpace/Backend`)  
 2. **Frontend** (located at `HyperSpace/Frontend`)
