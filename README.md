@@ -6,6 +6,10 @@ Team Number: 5
 
 Team Name : Ice-Cream truck  
 
+Problem Statement : Autonomous Local Manufacturing System  
+
+How We Solved It : Our problem statement was Autonomous Local Manufacturing System, by focusing on the Autonomous part of our problem, we were able to better engineer a soloution that optimises the process. Our service aims to connect a shopkeeper to a warehouse owner, allowing all shopkeepers the change to take the risk and make their business hyperlocal, and at a fraction of a cost than what it would usually take. This was achieved by having the warehouse space made into partions according to the space requirments of shopkeepers, and letting the warehouse owner rent out the remaining space to other shopkeepers.
+
 Lab :  AIT
 
 Team Members Name : 
