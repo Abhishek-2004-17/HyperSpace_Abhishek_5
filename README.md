@@ -18,6 +18,9 @@ Project Deployement link : https://hyper-space-abhishek-5-cxr46cwxo-abhisheks-pr
 
 Video Link : https://drive.google.com/drive/folders/1ohU06cmtpIOxK0mSuHFXcIhyEF7Xzk__?usp=drive_link
 
+Verified Username : testing@test.com  
+Verified Password : 12345678  
+
 This project is split into two parts:
 1. **Backend** (located at `HyperSpace/Backend`)  
 2. **Frontend** (located at `HyperSpace/Frontend`)
