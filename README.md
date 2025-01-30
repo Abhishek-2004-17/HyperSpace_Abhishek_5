@@ -40,29 +40,6 @@ HyperSpace provides:
 
 ---
 
-## Backend Setup
-1. **Requirements**  
-   - Python 3.x installed.
-   - (Optional) A virtual environment to keep dependencies clean.
-
-2. **Install Dependencies**  
-   - Navigate to `HyperSpace/Backend1` in the terminal.
-   - If dependencies exist in a `requirements.txt` (or within the notebook), install them via:
-     ```bash
-     pip install -r requirements.txt
-     ```
-   - Alternatively, install relevant libraries (like `sqlite3`, `hashlib`, etc.) as needed.
-
-3. **Run the Backend**  
-   - If the backend is just a Python file (e.g., `main.py` or a function within [test.ipynb](http://_vscodecontentref_/8)), launch it:
-     ```bash
-     python main.py
-     ```
-   - Or open [test.ipynb](http://_vscodecontentref_/9) in a Jupyter environment to run specific notebook cells.
-   - Confirm the backend is listening or ready (for example, if you set up Flask or FastAPI, ensure the app runs on a chosen port).
-
----
-
 ## Frontend Setup
 1. **Requirements**  
    - Node.js (16+) and npm or yarn.
